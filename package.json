@@ -32,6 +32,11 @@
     "webpack-merge": "^0.5.1"
   },
   "dependencies": {
+    "alt": "^0.18.1",
+    "alt-container": "^1.0.0",
+    "alt-utils": "^1.0.0",
+    "node-uuid": "^1.4.7",
+    "object-assign": "^4.0.1",
     "react": "^0.14.5",
     "react-dom": "^0.14.5"
   }
