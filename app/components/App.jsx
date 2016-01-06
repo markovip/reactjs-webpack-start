@@ -5,6 +5,10 @@ import Notes from "./Notes.jsx";
 import NoteActions from '../actions/NoteActions';
 import NoteStore from '../stores/NoteStore';
 
+import Lanes from './Lanes.jsx';
+import LaneActions from '../actions/LaneActions';
+import LaneStore from '../stores/LaneStore';
+
 export default class App extends React.Component {
 
   /*constructor(props) {
@@ -27,21 +31,24 @@ export default class App extends React.Component {
   }*/
 
   render() {
-    const notes = this.state.notes;
 
     return (
       <div>
-        <button className="add-note" onClick={this.addNote}>Add Note</button>
+        <button className="add-lane" onClick={this.addItem}>Add Lane</button>
           <AltContainer
-            stores={[NoteStore]}
+            stores={[LaneStore]}
             inject={{
-              notes: () => NoteStore.getState().notes
+              lanes: () => LaneStore.getState().lanes || []
             }}
           >
-            <Notes onEdit={this.editNote} onDelete={this.deleteNote} />
+            <Lanes />
           </AltContainer>
       </div>
     );
+  }
+
+  addItem = () => {
+    LaneActions.create({name: "New Lane"});
   }
 
   addNote = () => {
