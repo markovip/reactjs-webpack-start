@@ -27,6 +27,7 @@ class NoteStore {
   }
 
   update(updatedNote) {
+    console.log('Updated Note: ', updatedNote);
     const notes = this.notes.map((note) => {
       if(note.id === updatedNote.id) {
         note = assign({}, note, updatedNote);

@@ -42,19 +42,23 @@ export default class Lane extends React.Component {
   }
 
   editName(id, name) {
-    console.log('edited lane name', id, lane);
+    if (name) {
+      LaneActions.update({id, name, editing:false});
+    } else {
+      LaneActions.delete(id);
+    }
   }
 
   activateLaneEdit(id) {
-    console.log('edit lane name', id);
+    LaneActions.update({id, editing:true});
   }
 
   activateNoteEdit(id) {
-    console.log('edit note name', id);
+    NoteActions.update({id, editing:true});
   }
 
   addNote(laneId) {
-    const note = NoteActions.create({task: 'New task'});
+    const note = NoteActions.create({value: 'New task'});
 
     console.log('New Note created: ', note);
     console.log('Now attach it to lane with id: ', laneId);
@@ -64,8 +68,8 @@ export default class Lane extends React.Component {
     });
   }
 
-  editNote(id, task) {
-    NoteActions.update({id, task});
+  editNote(id, value) {
+    NoteActions.update({id, value, editing : false});
   }
 
   deleteNote(laneId, noteId) {
